@@ -29,7 +29,7 @@ export class PizzasService {
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 
-  removePizza(payload: Pizza): Observable<Pizza> {
+  removePizza(payload: Pizza): Observable<any> {
     return this.http
       .delete<any>(`/api/pizzas/${payload.id}`)
       .pipe(catchError((error: any) => Observable.throw(error.json())));
