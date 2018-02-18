@@ -9,7 +9,7 @@ import {
   RouterStateSerializer,
 } from '@ngrx/router-store';
 
-import { reducers, CustomSerializer } from './store';
+import { reducers, CustomSerializer, effects } from './store';
 
 // not used in production
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -43,7 +43,7 @@ export const ROUTES: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(effects),
     StoreRouterConnectingModule,
     environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
