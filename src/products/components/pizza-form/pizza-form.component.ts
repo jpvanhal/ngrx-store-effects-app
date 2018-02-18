@@ -22,15 +22,16 @@ import { Topping } from '../../models/topping.model';
 
 @Component({
   selector: 'pizza-form',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['pizza-form.component.scss'],
   template: `
     <div class="pizza-form">
       <form [formGroup]="form">
-      
+
         <label>
           <h4>Pizza name</h4>
-          <input 
-            type="text" 
+          <input
+            type="text"
             formControlName="name"
             placeholder="e.g. Pepperoni"
             class="pizza-form__input"
@@ -41,7 +42,7 @@ import { Topping } from '../../models/topping.model';
             <p>Pizza must have a name</p>
           </div>
         </label>
-      
+
         <ng-content></ng-content>
 
         <label>
@@ -120,9 +121,9 @@ export class PizzaFormComponent implements OnChanges {
     this.form
       .get('toppings')
       .valueChanges.pipe(
-        map(toppings => toppings.map((topping: Topping) => topping.id))
+        map((toppings) => toppings.map((topping: Topping) => topping.id)),
       )
-      .subscribe(value => this.selected.emit(value));
+      .subscribe((value) => this.selected.emit(value));
   }
 
   createPizza(form: FormGroup) {
